@@ -1,0 +1,44 @@
+<header class="header">
+    <nav class="nav">
+        <a href="#" class="logo">F.B</a>          
+        <ul class="list">
+            <li class="list_item">
+                <a href="">ABOUT</a>
+            </li>
+
+            <li class="list_item">
+                <a href="">MY POST</a>
+            </li>
+            
+            <li class="list_item">
+                <a href="">ACCOUNT</a>
+            </li>
+            
+            <li class="list_item">
+                <a href="#">LOGOUT</a>
+            </li >
+        </ul>
+    </nav>
+
+   
+    <nav class="secNav">
+        <ul class="secList">
+            <li class="secList__item"
+            th:classappend="${path == 'myPosts'} ? 'active'">
+                <a class="secList__link" href="">My Posts</a>
+            </li>
+            <li class="secList__item"
+            th:classappend="${path == 'newPost'} ? 'active'">
+                <a class="secList__link" href="/newpost">New Post</a>
+            </li>
+            <li class="secList__item"
+            th:classappend="${path == 'search'} ? 'active'">
+                <a class="secList__link" href="">Search</a>
+            </li>
+            <li class="secList__item"
+            th:classappend="${path == 'filter'} ? 'active'">
+                <a class="secList__link" href="">Filter</a>
+            </li>
+        </ul>
+    </nav>
+</header>

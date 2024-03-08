@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Friends Blog</title>
+    <link rel="stylesheet" th:href="@{/styles/reset.css}">
+    <link rel="stylesheet" th:href="@{/styles/home.css}">
+</head>
+
+<body>
+   
+
+    
+    <div class="container">
+        <main class="main">
+            <div class="texts">
+                <div class="textCon">
+                    <h1 class="textCon__h1">FRIENDS BLOG!</h1>
+                    <p class="textCon__p">Share ur moments with the one you love!!!</p>
+                </div> 
+            </div>
+
+            <div class="formContainer">
+                <form action="/blogs" class="formLogin" method="GET">
+                    <div class="credentialInput">     
+                        <input type="email" name="" id="" placeholder="Email">
+                    </div>
+                    <div class="credentialInput">     
+                        <input type="password" name="" id="" placeholder="Password">
+                    </div>
+                    <div class="credentialInput">
+                        <!-- <button class="btn">Lon In</button> -->
+                        <input class="btn" type="submit" value="Log In">
+                    </div>
+                    <div class="linkCon">
+                        <a href="">Forger Password?</a>
+                    </div>
+                    <hr>
+                    <div class="linkCon">
+                        <a href="">Cresate Account</a>
+                    </div>
+                                        
+                </form>
+            </div>      
+        </main>
+    </div>
+   
+</body>
+
+</html>

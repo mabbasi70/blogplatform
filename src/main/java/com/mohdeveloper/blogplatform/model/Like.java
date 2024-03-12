@@ -1,12 +1,26 @@
 package com.mohdeveloper.blogplatform.model;
 
-import java.util.Date;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "likes")
 public class Like {
 
-    private Integer id;
-    private Date createdAt;
-    private User user;
-    private Post post;
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private BaseUser likedBy;
+
+   @ManyToOne
+   @JoinColumn(name = "post_id")
+   private Post post;
+
 }

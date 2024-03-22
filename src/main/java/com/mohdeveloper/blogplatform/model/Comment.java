@@ -1,14 +1,10 @@
 package com.mohdeveloper.blogplatform.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Data
@@ -22,7 +18,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private BaseUser author;
+    private User author;
 
 
     @CreationTimestamp

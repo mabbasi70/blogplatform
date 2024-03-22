@@ -1,6 +1,7 @@
 package com.mohdeveloper.blogplatform.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -10,8 +11,8 @@ import java.util.List;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class BaseUser {
+@Data
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,23 +20,26 @@ public abstract class BaseUser {
     private String password;
     private String username;
 
-    @OneToMany(mappedBy = "author")
+    private Integer enabled;
+
+
+    @OneToMany(mappedBy = "author",fetch = FetchType.EAGER)
     private List<Post> posts = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_friends",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_id")
     )
-    private List<BaseUser> friends= new ArrayList<>();
+    private List<User> friends= new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "likedBy")
+    @OneToMany(mappedBy = "likedBy",fetch = FetchType.EAGER)
     private List<Like> likes = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author",fetch = FetchType.EAGER)
     private List<Comment> comments = new ArrayList<>();
 
     @CreationTimestamp

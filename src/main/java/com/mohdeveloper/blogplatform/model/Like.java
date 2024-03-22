@@ -17,7 +17,7 @@ public class Like {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private BaseUser likedBy;
+    private User likedBy;
 
    @ManyToOne
    @JoinColumn(name = "post_id")

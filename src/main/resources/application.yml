@@ -9,3 +9,21 @@ spring:
       ddl-auto: update
   thymeleaf:
     cache: false
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    password: jmrcnatlrrsdmhcr
+    username: moh.abbasi70@gmail.com
+    protocol: smtp
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+
+
+
+
+
+
+
+
+

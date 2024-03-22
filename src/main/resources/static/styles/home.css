@@ -103,10 +103,29 @@ body{
 .btn{
     color: var(--primary-text-color);
     background-color: var(--secondary-color);
+    cursor: pointer;
 }
+
+
 .linkCon{
+    height: 4.5rem;
+    width: 100%;
     margin-bottom: 1.5rem;
-   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.btn-signup{
+    background-color: var(--accent-color);
+    color: #ffffff;
+    height: 100%;
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-rad);
+    margin-top: 2rem;
 }
 
 

@@ -64,4 +64,19 @@ public class PostServiceImpl implements PostService {
         }
         return this.save(post);
     }
+
+    @Override
+    public Optional<Post> findById(Long id) {
+        return postRepository.findById(id);
+    }
+
+    @Override
+    public Iterable<Post> findAllByUserId(Long id) {
+        return postRepository.findAllByUserId(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        postRepository.deleteById(id);
+    }
 }

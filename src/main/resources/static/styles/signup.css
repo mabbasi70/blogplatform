@@ -1,0 +1,119 @@
+:root{
+    --primary-color: #00B8B8;
+    --secondary-color:#FF6B6B;
+    --accent-color: #FFD166;
+    --neutral-color: #333333;
+    --secondary-text-color: #E5E5E5;
+    --primary-text-color: #333333;
+    --hover-color:#39FF14;
+    --error-color:#FF6347;
+    --border-rad:1rem;
+    --font-size-h1:4rem;
+}
+
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*,
+*::after,
+*::before{
+    box-sizing: inherit;
+}
+
+body{
+    font-size: 1.6rem;
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+}
+
+
+.container{
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.main{
+    width: 80%;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formContainer{
+    width: 100%;
+    height: 40rem;
+    max-width: 40rem;
+    min-width: 30rem;
+}
+
+.formSignup{
+    padding: 3rem 1.5rem 3rem 1.5rem;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-text-color);
+    border-radius: var(--border-rad);
+ }
+
+.credentialInput{   
+    width: 100%;
+    height: 4.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: var(--border-rad);
+    
+}
+
+.credentialInput input{
+    font-size: 1.6rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    height: 100%;
+    width: 100%;
+    border-radius: var(--border-rad);
+}
+
+
+
+@media(min-width:300px){
+    .container{
+        width: 100%;
+    }
+}
+
+
+ @media  (min-width:576px){
+    .container{
+        width:54rem;
+    }
+} 
+
+
+ @media (min-width:768px){
+    .container{
+        width:72rem;
+    }
+} 
+
+@media (min-width:992px){
+    .container{   
+        width: 92rem;
+    }
+   
+}
+
+@media (min-width:1200px){
+    .container{
+        width: 114rem ;
+    }
+    
+}
+
+@media (min-width:1400px){
+    .container{
+        width: 137rem ;
+    }
+}

@@ -1,4 +1,23 @@
+
+server:
+  port: 2000
+
+image:
+  dir: /Users/moh/Pictures/blog-images/
+
 spring:
+  security:
+      oauth2:
+        client:
+          registration:
+            google:
+              client-id: 584249938381-k2273gkv8spus8pjsid68d23l75h25sk.apps.googleusercontent.com
+              client-secret: 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
+              scope: profile, email
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
   datasource:
     url: jdbc:mysql://localhost/blog_platform
     username: blogplatform
@@ -6,24 +25,29 @@ spring:
   jpa:
     generate-ddl: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   thymeleaf:
     cache: false
   mail:
-    host: smtp.gmail.com
+    host: smtppro.zoho.com
     port: 465
-    password: password
-    username: user
     protocol: smtp
-    properties.mail.smtp:
-      auth: true
-      starttls.enable: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+        from: mohammad@mohdeveloper.com
 
 
-
-
-
-
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+        web.socket: ERROR
+        oauth2: DEBUG
 
 
 

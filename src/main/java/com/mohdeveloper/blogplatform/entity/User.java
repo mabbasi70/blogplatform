@@ -36,7 +36,7 @@ public class User implements Serializable {
 
     private String username;
 
-    private Integer enabled;
+    private Boolean enabled = false;
 
     private String token;
 

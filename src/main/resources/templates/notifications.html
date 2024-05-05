@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/styles/reset.css}" />
+    <link rel="stylesheet" th:href="@{/styles/blog.css}" />
+    <script
+      src="https://kit.fontawesome.com/d4e96040f3.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container">
+      <section th:if="${ not notificationBox.isEmpty }" class="notification-area">
+          <ul class="notification-list">            
+              <li th:each="notification : ${notificationBox}">
+                  <div class="notification" th:if="${notification.entityType.toString != 'FRIENDSHIP'}">
+                    <a th:href="@{/posts/{id}(id=${notification.associatedEntity.post.id})}">
+                      <p class="notification-message" th:text="${notification.message}"></p>
+                      <time th:text="${notification.createdAt}"></time>
+                      <span th:if="${notification.read}" class="notification-read">Read</span>
+                      <span th:if="${!notification.read}" class="notification-unread">Unread</span>
+                    </a>       
+                  </div>
+                 
+                  <div class="notification" th:if="${notification.entityType.toString == 'FRIENDSHIP'}">
+                    <div class="form">
+                      <p class="notification-message" th:text="${notification.message}"></p>
+                      <div class="accept-reject-holder" th:if="${ notification.updatedAt == null}">
+                        <form th:action="@{/friendship-requests/answer}" method="POST">
+                          <input type="hidden" name="notifId" th:value="${notification.id}">
+                          <input type="hidden"  name="entityId" th:value="${notification.entityId}">
+                          <input type="hidden" name="userId" th:value="${currentUser.Id}">
+                          <input type="hidden" name="answer" value="accept">
+                          <button type="submit">Accept</button>
+                        </form>
+                       
+                        <form th:action="@{/friendship-requests/answer}" method="POST">      
+                          <input type="hidden" name="notifId" th:value="${notification.id}">
+                          <input type="hidden" th:value="${notification.entityId}">    
+                          <input type="hidden"  name="entityId" th:value="${notification.entityId}">
+                          <input type="hidden" name="userId" th:value="${currentUser.Id}">
+                          <input type="hidden" name="answer" value="reject">
+                          <button>Reject</button>
+                        </form>
+                      </div>                        
+                      
+                    </div>
+                  </div>
+              </li>
+
+          </ul>
+
+      </section>
+  </main>
+  <script th:src="@{/js/script.js}"></script>
+
+  </body>
+</html>

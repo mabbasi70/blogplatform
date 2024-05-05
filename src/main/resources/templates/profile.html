@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/styles/reset.css}">
+    <link rel="stylesheet" th:href="@{/styles/blog.css}">
+    <script src="https://kit.fontawesome.com/d4e96040f3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+   <div class="container">
+       <h2>User Profile</h2>
+
+
+       <form th:action="@{/updateProfile}" th:object="${currentUser}" method="post">
+           <div>
+               <label for="username">Username:</label>
+               <input type="text" id="username" th:field="*{username}" placeholder="Your Username" required>
+           </div>
+           <div>
+               <label>Email:</label>
+               <span th:text="${currentUser.email}"></span>
+           </div>
+           <div>
+               <button type="submit">Update Profile</button>
+           </div>
+       </form>
+
+
+       <div>
+           <a th:href="@{/changePassword}">
+               <button type="button">Change Password</button>
+           </a>
+       </div>
+
+   </div>
+   <script th:src="@{/js/script.js}"></script>
+</body>
+</html>

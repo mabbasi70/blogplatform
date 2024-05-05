@@ -9,6 +9,7 @@
     --error-color:#FF6347;
     --border-rad:1rem;
     --font-size-h1:4rem;
+    --success-color:#215704;
 }
 
 html{
@@ -49,22 +50,21 @@ body{
     width: 100%;
     max-width: 40rem;
     min-width: 30rem;
-    height: 40rem;
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.textCon{
-    padding: 8rem 1.5rem 3rem 1.5rem;
-    width: 100%;
-    height: 100%;
-}
 
 .textCon__h1{
-    font-size: var(--font-size-h1);
+    font-size: 3.5rem;
     font-weight: bold;
+    text-align: center;
 }
 
 .textCon__p{
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 .formContainer{
@@ -74,7 +74,7 @@ body{
     min-width: 30rem;
 }
 
-.formLogin{
+.formLogin,.formSignup{
    padding: 3rem 1.5rem 3rem 1.5rem;
    width: 100%;
    height: 100%;
@@ -98,6 +98,8 @@ body{
     height: 100%;
     width: 100%;
     border-radius: var(--border-rad);
+    border: none;
+    outline: none;
 }
 
 .btn{
@@ -127,6 +129,169 @@ body{
     border-radius: var(--border-rad);
     margin-top: 2rem;
 }
+.google{
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal{
+    position: absolute;
+    width: 35rem;
+    height: 10rem;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    box-shadow: 10px 10px 10px rgba(0,0,0,.1);
+}
+.icon{
+    position: absolute;
+    right: .5rem;
+    top: .5rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+.error {
+    color: var(--error-color);
+    background-color: #c6adad; 
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: var(--border-rad);
+}
+
+.success {
+    color: var(--success-color);
+    background-color: #D0FFD0; 
+    margin-bottom: 1rem;
+    border-radius: var(--border-rad);
+}
+
+/* 
+***
+RESET PASSWORD
+***
+*/
+
+.password-reset-background {
+    height: 100vh;
+    font-size: 1.6rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00B8B8;
+    font-family: Arial, sans-serif;
+}
+
+.password-reset-container {
+    width: 100%;
+    max-width: 40rem;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    border-radius: .8rem;
+}
+
+.password-reset-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.password-reset-input {
+    padding: 1rem;
+    border: .2rem solid #ccc;
+    border-radius: .4rem;
+    font-size: 1.6rem;
+}
+
+.password-reset-button {
+    padding: 1rem;
+    background-color: #007B7B;
+    color: white;
+    border: none;
+    border-radius: .4rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    transition: background-color 0.3s;
+}
+
+.password-reset-button:hover {
+    background-color: #005a5a;
+}
+
+.code-input-container {
+    display: none; 
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.code-input {
+    width: 4rem;
+    height: 4rem;
+    border: .2rem solid #007B7B;
+    text-align: center;
+    font-size: 2.4rem;
+    border-radius: .4rem;
+}
+
+.code-submit-button {
+    padding: 1rem;
+    background-color: #007B7B;
+    color: white;
+    border: none;
+    border-radius: .4rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    transition: background-color 0.3s;
+}
+
+.code-submit-button:hover {
+    background-color: #005a5a;
+}
+
+.new-password-container {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.new-password-input {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.new-password-button {
+    padding: 10px;
+    background-color: #007B7B;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.new-password-button:hover {
+    background-color: #005a5a;
+}
+
+
+.error-message {
+    color: #D8000C; 
+    font-size: 14px;
+    height: 20px; 
+    margin-top: 5px;
+}
 
 
 @media(min-width:300px){
@@ -153,12 +318,18 @@ body{
     .container{   
         width: 92rem;
     }
+    .textCon__h1{
+        font-size: 4rem;
+    }
    
 }
 
 @media (min-width:1200px){
     .container{
         width: 114rem ;
+    }
+    .texts{
+        height: 40rem;
     }
     
 }

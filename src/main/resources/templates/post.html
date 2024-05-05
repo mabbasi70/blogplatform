@@ -1,16 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/styles/reset.css">
     <link rel="stylesheet" href="/styles/blog.css">
+    <script src="https://kit.fontawesome.com/d4e96040f3.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
 
+        <div class="post-data">
+
+            <div class="post-detail" style="padding: 0;">
+                <h1 class="post-title" th:text="${post.author.username}"></h1>
+                <div class="post-detail__img">
+                    <img th:src="${post.imageData.filePath}" alt="">
+                </div>  
+
+                <form th:action="@{/posts/{postId}/toggle-like(postId=${post.id})}"  th:method="POST">
+                    <button type="submit" style="background: none; border: none;">
+                        <i th:class="${#lists.contains(usersId, userId) ? 'fas fa-heart' : 'far fa-heart'}"></i>
+                        <span th:text="${post.likesCount == 0 ? '' : post.likesCount}"></span>
+                    </button>
+                        <!-- <input type="submit" th:value="${#lists.contains(usersId, userId)? 'Unlike' : 'Like'}"> -->
+                   </form>
+                <p class="post-caption" th:text="${post.caption}">
+
+                </p>
+              
+            </div>
+
+            <div class="post-comments">
+                <ul>
+                    <li th:each="comment : ${comments}" th:text="${comment.content}">hi</li>
+               
+                </ul>
+
+                <form th:action="@{/posts/{postId}/comments(postId=${post.id})}"  th:method="POST" th:object="${comment}">
+                    <textarea th:field="*{content}" name="" id=""></textarea>
+<!--                    <input type="hidden" name="postId" th:value="${post.id}">-->
+                    <input type="submit" value="submit">
+               </form>
+            </div>
+
+        </div>
+        
+    </div>
+    <script th:src="@{/js/script.js}"></script>
     
 </body>
 

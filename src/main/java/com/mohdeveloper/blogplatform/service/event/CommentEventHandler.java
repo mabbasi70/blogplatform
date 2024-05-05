@@ -22,7 +22,8 @@ public class CommentEventHandler {
     }
 
     private void notifyPostOwner(Comment comment){
-        String message = comment.getAuthor().getEmail() + " add a comment to your post: " + comment.getPost().getCaption();
+        String first15 = comment.getPost().getCaption().substring(0,15) + "...";
+        String message = comment.getAuthor().getUsername() + " add a comment to your post: " + first15;
         Notification notification = Notification.builder()
                 .entityId(comment.getId())
                 .entityType(Notification.EntityType.COMMENT)

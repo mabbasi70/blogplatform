@@ -56,12 +56,15 @@ public class LikeServiceImpl implements LikeService {
                 like.setLikedBy(user);
                 like.setPost(post);
                 post.getLikes().add(like);
+                post.setLikesCount(post.getLikesCount()+1);
                 Like savedLike = likeRepository.save(like);
                 applicationEventPublisher.publishEvent(new LikeEventCreation(this, savedLike));
 
             }else{
+                post.setLikesCount(post.getLikesCount()-1);
                 likeRepository.deleteByPostIdAndUserId(postId,secureUser.getId());
             }
         }
     }
+
 }

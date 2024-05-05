@@ -1,24 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
+    <link rel="stylesheet" th:href="@{/styles/reset.css}">
     <link rel="stylesheet" th:href="@{/styles/home.css}">
+    <script src="https://kit.fontawesome.com/d4e96040f3.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
 
         <div class="main">
             <div class="formContainer">
-                <form action="" class="formSignup">
-                    <div class="credentialInput">     
-                        <input type="email" name="" id="" placeholder="Email">
+                <form th:action="@{/signup}" class="formSignup" method="POST" th:object="${user}">
+                    <div class="">
+                        <h1>SignUp</h1>
                     </div>
                     <div class="credentialInput">     
-                        <input type="password" name="" id="" placeholder="Password">
+                        <input type="email" th:field="*{email}" placeholder="Email">
                     </div>
+                    <div class="credentialInput">     
+                        <input type="password" th:field="*{password}" placeholder="Password">
+                    </div>
+                    <div class="credentialInput">     
+                        <input type="password" th:field="*{confirmPassword}" placeholder="Confirm Password">
+                    </div>
+
+                    <div class="credentialInput">
+                        <!-- <button class="btn">Lon In</button> -->
+                        <input class="btn" type="submit" value="Create">
+                    </div>
+
+
+
                 </form>
+                <a th:href="@{/oauth2/authorization/google}">Log in with Google</a>
+
+
             </div>
         </div>
 

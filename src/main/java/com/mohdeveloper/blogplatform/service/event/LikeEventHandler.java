@@ -22,7 +22,8 @@ public class LikeEventHandler {
     }
 
     private void notifyPostOwner(Like like) {
-        String message = "Your post titled '" + like.getPost().getCaption() + "' was liked by " + like.getLikedBy().getEmail();
+        String first15 = like.getPost().getCaption().substring(0,15);
+        String message = "Your post titled '" + first15 + "' was liked by " + like.getLikedBy().getEmail();
         Notification notification = Notification.builder()
                 .entityId(like.getId())
                 .entityType(Notification.EntityType.LIKE)

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/blog.css">
+    <script src="https://kit.fontawesome.com/d4e96040f3.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div class="container">
+        <section class="messages-section">
+            <input type="hidden" name="senderId" th:value="${currentUser.id}">
+            <div class="people">
+                <ul class="puser-list">
+                    <li><a href="#">User 1</a></li>
+                </ul>
+            </div>
+
+            <div class="messages">
+                <div class="chat-display">
+                    <ul id="messageList">
+                        <li>hi</li>
+                        <!-- Dynamic message display handled by JavaScript -->
+                    </ul>
+                  <!-- <h1 th:if="${ receiverUser != null}"
+                      th:text="${ receiverUser.username != null ? receiverUser.username : #strings.substringBefore(receiverUser.email, '@')}">
+                  </h1> -->
+
+                  <!-- <div style="display: flex; flex-direction: column;" th:if="${messageBox != null}">
+                    <div th:each="message : ${#lists.toList(messageBox.content).reverse()}" 
+                        th:class="${message.sender.id == currentUser.id ? 'message current-user' : 'message other-user'}">
+                        <p th:text="${message.text}"></p>
+                    </div>
+                 </div> -->
+                 <!-- <div style="display: flex; flex-direction: column;" th:if="${messages != null}">
+                    <div th:each="message : ${messages}" 
+                        th:class="${message.sender.id == currentUser.id ? 'message current-user' : 'message other-user'}">
+                        <p th:text="${message.text}"></p>
+                    </div>
+                 </div> -->
+                </div>
+
+<!--                <form id="messageForm" onsubmit="sendMessage(event)"-->
+<!--                th:if="${ receiverUser != null}" th:action="@{/messages}" class="message-input" th:object="${message}" method="post">-->
+<!--                    <input type="text" th:field="*{text}" placeholder="Write a message..." id="messageInput">-->
+<!--                    <input type="hidden" name="senderId" th:value="${currentUser.id}">-->
+<!--                    <input type="hidden" name="receiverId" th:value="${receiverUser.id}">-->
+<!--                    <button >Send</button>-->
+<!--                </form>-->
+
+                <form id="messageForm" onsubmit="sendMessage(event)"
+                      th:if="${receiverUser != null}" class="message-input" >
+                    <input type="text"  placeholder="Write a message..." id="messageInput">
+                    <input type="hidden" name="senderId" th:value="${currentUser.id}">
+                    <input type="hidden" name="receiverId" th:value="${receiverUser.id}">
+                    <button >Send</button>
+                </form>
+            </div>
+        </section>
+           
+       
+    </div>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stomp-websocket/lib/stomp.min.js"></script>
+    <script th:src="@{/js/message.js}"></script>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>

@@ -4,24 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/reset.css">
-    <link rel="stylesheet" href="/styles/blog.css">
+    <link rel="stylesheet" th:href="@{/styles/reset.css}">
+    <link rel="stylesheet" th:href="@{/styles/blog.css}">
+    <script src="https://kit.fontawesome.com/d4e96040f3.js" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
-        textarea{
-            display: block;
-        }
+   
     </style>
 </head>
 <body>
-    <div th:replace="fragments/header :: header"></div>
-
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div th:if="${message}" class="modal" th:classappend="${messageType == 'error' ? 'error' : 'success'}"><span th:text="${message}"></span><i class="fa-solid fa-x icon"></i></div>
     <div class="container">
-        <form class="newPostForm" method="POST">
-            <input type="file" name="" id="">
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+        <form th:object="${post}" th:action="@{/posts}" class="newPostForm" method="POST" enctype="multipart/form-data">
+            <textarea th:field="*{caption}" placeholder="Do you want to say what happend!? :)"></textarea>
+            <img id="imagePreview" src="#" alt="Image preview..." />
+            <input type="file" name="imageFile" id="imageFile" >
             <input type="submit" value="upload">
         </form>
     </div>
+
+    <script th:src="@{/js/script.js}"></script>
 </body>
 </html>

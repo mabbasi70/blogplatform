@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/styles/reset.css}" />
+    <link rel="stylesheet" th:href="@{/styles/blog.css}" />
+    <script
+      src="https://kit.fontawesome.com/d4e96040f3.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <main>
+        <div>
+          <h2 class="user-top">Find and Connect with Users</h2>
+          <form class="search-box" th:action="@{/users}" method="GET">
+            <input
+              type="text"
+              name="search"
+              placeholder="Search users..."
+              th:value="${search}"
+            />
+            <button type="submit">Search</button>
+          </form>
+        </div>
+
+        <div>
+          <h3 class="user-h3">Users</h3>
+          <div style="height: calc(100vh - 300px);" th:unless="${userBox.empty}">
+            <ul class="user-list">
+              <li th:each="user : ${userBox.content}">
+                <span th:text="${ user.username}">Username</span>
+               <span><i th:class="${user.activityStatus.toString() == 'ONLINE' ? 'fa-solid fa-signal' : 'fa-solid fa-not-equal'}"></i></span>
+               <span th:text="${#temporals.format(user.lastActivity , 'dd/MM/yyyy HH:mm')}"></span>
+               <div class="div">
+                  <form th:action="@{/friendship-requests}" method="POST" style="display: inline-block;">
+                    <input
+                      type="hidden"
+                      name="requesterId"
+                      th:value="${currentUser.id}"
+                    />
+                    <input
+                      type="hidden"
+                      name="receiverId"
+                      th:value="${user.id}"
+                    />
+                    <div th:if=" not ${userFriendIdAndStatusList.get(user.id)}">
+                      <button class="friend-request-btn" type="Submit">
+                        Add Friend
+                      </button>
+                    </div>
+                    <div
+                      class=""
+                      th:if="${userFriendIdAndStatusList.get(user.id)}"
+                    >
+                      <div
+                        class=""
+                        th:switch="${userFriendIdAndStatusList.get(user.id)}"
+                      >
+                        <button
+                          class="friend-request-btn"
+                          th:case="'PENDING'"
+                          th:text="${userFriendIdAndStatusList.get(user.id)}"
+                        ></button>
+                        <button
+                          class="friend-request-btn"
+                          th:case="'FRIEND'"
+                          th:text="${userFriendIdAndStatusList.get(user.id)}"
+                        ></button>
+                        <button
+                          class="friend-request-btn"
+                          th:case="'YOURSELF'"
+                          th:text="${userFriendIdAndStatusList.get(user.id)}"
+                        ></button>
+                      </div>
+                    </div>
+                  </form>
+                  <a href=""
+                    ><button type="button" class="view-profile-btn">
+                      View Profile
+                    </button></a
+                  >
+                  <a th:href="@{/messages/{userId}/{receiverId}(userId=${currentUser.id}, receiverId=${user.id})}" >
+                    <button class="message-btn">
+                      Message
+                    </button>
+                   </a>
+                </div>
+              </li>
+            </ul>
+
+           
+          </div>
+
+          <div>
+            <ul class="pagination">
+              <li th:if="${userBox.hasPrevious()}">
+                <a
+                  th:href="@{/users(size=${userBox.size}, page=${userBox.number - 1}, search=${search})}"
+                  >&laquo;</a
+                >
+              </li>
+              <li
+                th:each="pageNum : ${#numbers.sequence(0, userBox.totalPages - 1)}"
+                th:class="${pageNum == userBox.number ? 'active' : ''}"
+              >
+                <a
+                  th:href="@{/users(size=${userBox.size}, page=${pageNum}, search=${search})}"
+                  th:text="${pageNum + 1}"
+                  >1</a
+                >
+              </li>
+              <li th:if="${userBox.hasNext()}">
+                <a
+                  th:href="@{/users(size=${userBox.size}, page=${userBox.number + 1}, search=${search})}"
+                  >&raquo;</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div th:if="${userBox.empty}">
+            <p>No users found. Try adjusting your search!</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

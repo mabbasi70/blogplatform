@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <link rel="stylesheet" th:href="@{/styles/reset.css}">
+    <link rel="stylesheet" th:href="@{/styles/blog.css}">
+    <script src="https://kit.fontawesome.com/d4e96040f3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div th:if="${message}" class="modal" th:classappend="${messageType == 'error' ? 'error' : 'success'}"><span th:text="${message}"></span><i class="fa-solid fa-x icon"></i></div>
+
+    <div class="container">
+
+            <main class="posts">
+                <div th:each="post : ${posts}" class="post">
+                   <h1 class="post__author" th:text="${post.author.username}">Mohammad</h1>
+                   <a th:href="@{/posts/{id}(id=${post.id})}"><img th:src="${post.imageData.filePath}" alt="" class="post__img"></a>
+                   <!-- <h1 class="post__author" th:text="${post.author.username}"></h1> -->
+                   <div class=""><i class="fas fa-heart"></i><span th:text="${post.likesCount == 0 ? '' : post.likesCount}"></span></div>
+                   <p class="post__desc" th:text="${post.caption}"></p>
+                </div>
+            </main>
+    </div>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>

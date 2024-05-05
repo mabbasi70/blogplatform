@@ -1,35 +1,70 @@
 <header class="header">
     <nav class="nav">
-        <a href="#" class="logo">F.B</a>          
+        <a th:href="@{/posts}" class="logo">F.B</a>
         <ul class="list">
             <li class="list_item">
-                <a href="">ABOUT</a>
+                <a th:href="@{/notifications(userId=${currentUser.id})}">NOTIFICATIONS</a>
             </li>
 
             <li class="list_item">
-                <a href="">MY POST</a>
+                <a th:href="@{/messages/{userId}(userId=${currentUser.id})}">MESSAGES</a>
+            </li>
+
+            <li class="list_item">
+                <a th:href="@{/users}">USERS</a>
             </li>
             
             <li class="list_item">
-                <a href="">ACCOUNT</a>
+                <a th:href="@{/users/profile}">ACCOUNT</a>
             </li>
             
             <li class="list_item">
-                <a href="#">LOGOUT</a>
+                <form th:action="@{/logout}" method="POST">
+                    <Button type="submit">Logout</Button>
+                </form>
             </li >
         </ul>
-    </nav>
+        <a class="hamburger-link" href="#"><i class="hamburger fa-solid fa-bars"></i></a>
+        <ul class="menu-mobile">
+           <li><a class="logo menu-mobile__link" th:href="@{/posts}">F.B</a></li>
+            <hr>
+           
+                <li class="list_item">
+                    <a th:href="@{/notifications(userId=${currentUser.id})}">NOTIFICATIONS</a>
+                </li>
+    
+                <li class="list_item">
+                    <a th:href="@{/messages/{userId}(userId=${currentUser.id})}">MESSAGES</a>
+                </li>
+    
+                <li class="list_item">
+                    <a th:href="@{/users}">USERS</a>
+                </li>
+                
+                <li class="list_item">
+                    <a th:href="@{/users/profile}">ACCOUNT</a>
+                </li>
+            
+            <hr>
 
+            <li class="list_item">
+                <form th:action="@{/logout}" method="POST">
+                    <Button type="submit">Logout</Button>
+                </form>
+            </li >
+        
+        </ul>     
+    </nav>
    
     <nav class="secNav">
         <ul class="secList">
             <li class="secList__item"
             th:classappend="${path == 'myPosts'} ? 'active'">
-                <a class="secList__link" href="">My Posts</a>
+                <a class="secList__link" href="/my-posts">My Posts</a>
             </li>
             <li class="secList__item"
             th:classappend="${path == 'newPost'} ? 'active'">
-                <a class="secList__link" href="/newpost">New Post</a>
+                <a class="secList__link" href="/posts/new">New Post</a>
             </li>
             <li class="secList__item"
             th:classappend="${path == 'search'} ? 'active'">

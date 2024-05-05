@@ -13,7 +13,4 @@ public class CommentEventCreation extends ApplicationEvent {
         this.comment = comment;
     }
 
-    public Comment getComment() {
-        return comment;
-    }
 }

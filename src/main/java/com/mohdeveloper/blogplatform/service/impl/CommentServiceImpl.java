@@ -19,10 +19,11 @@ import java.util.Optional;
 @Service
 public class CommentServiceImpl implements CommentService {
 
+
     private final CommentRepository commentRepository;
     private final PostServiceImpl postService;
     private final UserServiceImpl userService;
-    private ApplicationEventPublisher applicationEventPublisher;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Autowired
     public CommentServiceImpl(CommentRepository commentRepository,
